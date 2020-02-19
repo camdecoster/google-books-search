@@ -13,11 +13,11 @@ class FilterBar extends Component {
                         this.props.handlePrintTypeUpdate(e.target.value)
                     }
                 >
-                    <option value='all'>All</option>
-                    <option value='books'>Books</option>
-                    <option value='magazines'>Magazines</option>
+                    <option value='ALL'>All</option>
+                    <option value='BOOK'>Books</option>
+                    <option value='MAGAZINE'>Magazines</option>
                 </select>
-                <label htmlFor='filterSaleStatus'>Book Type:</label>
+                <label htmlFor='filterSaleStatus'>Availability:</label>
                 <select
                     id='filterSaleStatus'
                     name='filterSaleStatus'
@@ -25,9 +25,12 @@ class FilterBar extends Component {
                         this.props.handleSaleStatusUpdate(e.target.value)
                     }
                 >
-                    <option value='none'>No Filter</option>
-                    <option value='free'>Free</option>
-                    <option value='non-free'>Non-free</option>
+                    <option value='NONE'>No Filter</option>
+                    <option value='FREE'>Free</option>
+                    <option value='FOR_SALE'>For Sale</option>
+                    <option value='FOR_SALE_AND_RENTAL'>
+                        For Sale and Rental
+                    </option>
                 </select>
             </div>
         );

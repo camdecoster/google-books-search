@@ -24,14 +24,13 @@ class SearchBar extends Component {
 
         const queryParameters = {
             key: apiInfo.google.books.key,
-            // Need to get the value from the input down here
             q: document.getElementById("bookSearch").value
         };
 
-        console.log(formatQueryParameters(queryParameters));
-
         const parameterString = formatQueryParameters(queryParameters);
         const url = apiInfo.google.books.url + "?" + parameterString;
+
+        console.log(queryParameters);
 
         fetch(url)
             .then(res => {
@@ -43,7 +42,7 @@ class SearchBar extends Component {
                 return res.json();
             })
             .then(searchResults => {
-                // console.log(searchResults);
+                console.log(searchResults);
                 this.props.processSearchResults(searchResults);
             })
             .catch(err => {

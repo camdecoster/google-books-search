@@ -30,8 +30,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            filterPrintType: "all",
-            filterSaleStatus: "none",
+            filterPrintType: "ALL",
+            filterSaleStatus: "NONE",
             bookSearchValue: "",
             bookSearchResults: []
         };
@@ -45,7 +45,7 @@ class App extends Component {
 
     processSearchResults(results) {
         // Enter query info to search Books API with current bookSearchValue
-        // console.log(results.items);
+        console.log(results.items);
         const relevantResults = results.items.map(book => {
             const saleability = book.saleInfo.saleability;
             let priceString;
@@ -57,13 +57,25 @@ class App extends Component {
                 priceString = `$${book.saleInfo.retailPrice.amount}`;
             }
 
+            // console.log("author", book.volumeInfo.authors[0]);
+            // console.log("coverUrl", book.volumeInfo.imageLinks.smallThumbnail);
+            // console.log("price", priceString);
+            // console.log("printType", book.volumeInfo.printType);
+            // console.log("saleStatus", book.saleInfo.saleability);
+            // console.log("summary", summaryString);
+            // console.log("title", book.volumeInfo.title);
+
             const bookInfo = {
-                author: book.volumeInfo.authors[0],
+                author: book.volumeInfo.hasOwnProperty("authors")
+                    ? book.volumeInfo.authors[0]
+                    : "Author unavailable",
                 coverUrl: book.volumeInfo.imageLinks.smallThumbnail,
                 price: priceString,
+                printType: book.volumeInfo.printType,
                 saleStatus: book.saleInfo.saleability,
-                // test: book.searchInfo.textSnippet
-                summary: book.searchInfo.textSnippet,
+                summary: book.hasOwnProperty("searchInfo")
+                    ? decodeURIComponent(book.searchInfo.textSnippet)
+                    : "Summary unavailable",
                 title: book.volumeInfo.title
             };
             // console.log(book.searchInfo);

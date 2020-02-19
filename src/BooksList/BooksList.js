@@ -7,18 +7,16 @@ class BooksList extends Component {
         const filteredBooksList = this.props.bookSearchResults
             .filter(
                 book =>
-                    this.props.filterBookType === "none" ||
-                    book.bookType === this.props.filterBookType
+                    this.props.filterSaleStatus === "NONE" ||
+                    book.bookType === this.props.filterSaleStatus
             )
             .filter(
                 book =>
-                    this.props.filterPrintType === "all" ||
+                    this.props.filterPrintType === "ALL" ||
                     book.printType === this.props.filterPrintType
             )
             .map((book, key) => <BookItem {...book} key={key} />);
-        // const books = this.props.bookSearchResults.map((book, key) => (
-        //     <BookItem {...book} key={key} />
-        // ));
+
         return <div className='BooksList'>{filteredBooksList}</div>;
     }
 }
