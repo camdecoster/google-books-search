@@ -1,0 +1,5 @@
+.SearchBar {
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+}
